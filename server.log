@@ -1,0 +1,567 @@
+Starting file watcher on: /Users/tehrani/Documents/claude-outputs
+🚀 Claude Outputs Viewer running at http://localhost:3333
+📁 Watching: /Users/tehrani/Documents/claude-outputs
+🔔 Notifications enabled
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/latest/welcome.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-design.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/claude-code-auto-save-system-design.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-code-auto-save-system-design.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-code-auto-save-system-design.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: claude-code-auto-save-system-design.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: claude-outputs-viewer-concept.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/claude-outputs-viewer-concept.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-outputs-viewer-concept.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-outputs-viewer-concept.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: claude-outputs-viewer-concept.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/claude-code-auto-save-system-implementation-summary.md
+notifyFileAdded called: {
+  enabled: true,
+  fileName: 'claude-code-auto-save-system-implementation-summary.md'
+}
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-code-auto-save-system-implementation-summary.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: claude-code-auto-save-system-implementation-summary.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/YESOD_ConnectorGateway_設計思想解説.md
+notifyFileAdded called: { enabled: true, fileName: 'YESOD_ConnectorGateway_設計思想解説.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: YESOD_ConnectorGateway_設計思想解説.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: YESOD_ConnectorGateway_設計思想解説.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: claude-outputs-viewer-design.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/claude-outputs-viewer-design.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-outputs-viewer-design.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-outputs-viewer-design.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: claude-outputs-viewer-design.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: scroll-test.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/scroll-test.md
+notifyFileAdded called: { enabled: true, fileName: 'scroll-test.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: scroll-test.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: scroll-test.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: test-document.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/test-document.md
+notifyFileAdded called: { enabled: true, fileName: 'test-document.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: test-document.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: test-document.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: setup-complete.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/setup-complete.md
+notifyFileAdded called: { enabled: true, fileName: 'setup-complete.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: setup-complete.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: setup-complete.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: welcome.md
+File added: /Users/tehrani/Documents/claude-outputs/latest/welcome.md
+notifyFileAdded called: { enabled: true, fileName: 'welcome.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: welcome.md',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: welcome.md" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: test-document.md.meta
+File added: /Users/tehrani/Documents/claude-outputs/latest/test-document.md.meta
+notifyFileAdded called: { enabled: true, fileName: 'test-document.md.meta' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: test-document.md.meta',
+  subtitle: 'Directory: latest'
+}
+Executing notification command: terminal-notifier -message "Created: test-document.md.meta" -title "New Claude Output" -subtitle "Directory: latest" -sound "Ping"
+File info created for: claude-code-auto-save-system-design.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-code-auto-save-system-design.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-code-auto-save-system-design.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: claude-code-auto-save-system-design.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+notifyFileAdded called: { enabled: true, fileName: 'YESOD_ConnectorGateway_設計思想解説.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: YESOD_ConnectorGateway_設計思想解説.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: YESOD_ConnectorGateway_設計思想解説.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: claude-outputs-viewer-concept.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-outputs-viewer-concept.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-outputs-viewer-concept.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: claude-outputs-viewer-concept.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+notifyFileAdded called: {
+  enabled: true,
+  fileName: 'claude-code-auto-save-system-implementation-summary.md'
+}
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-code-auto-save-system-implementation-summary.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: claude-code-auto-save-system-implementation-summary.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: setup-complete.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+notifyFileAdded called: { enabled: true, fileName: 'setup-complete.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: setup-complete.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: setup-complete.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: claude-outputs-viewer-design.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+notifyFileAdded called: { enabled: true, fileName: 'claude-outputs-viewer-design.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: claude-outputs-viewer-design.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: claude-outputs-viewer-design.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: scroll-test.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+notifyFileAdded called: { enabled: true, fileName: 'scroll-test.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: scroll-test.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: scroll-test.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: welcome.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+notifyFileAdded called: { enabled: true, fileName: 'welcome.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: welcome.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: welcome.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: test-document.md.meta
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+notifyFileAdded called: { enabled: true, fileName: 'test-document.md.meta' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: test-document.md.meta',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: test-document.md.meta" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File info created for: test-document.md
+File added: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+notifyFileAdded called: { enabled: true, fileName: 'test-document.md' }
+Sending notification: {
+  title: 'New Claude Output',
+  message: 'Created: test-document.md',
+  subtitle: 'Directory: 2025-07-28'
+}
+Executing notification command: terminal-notifier -message "Created: test-document.md" -title "New Claude Output" -subtitle "Directory: 2025-07-28" -sound "Ping"
+File watcher is ready
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+Notification sent via terminal-notifier
+Notification sent successfully
+Auto-opening browser disabled temporarily due to open package error
+WebSocket client connected
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: test-document.md
+File info created for: test-document.md.meta
+File info created for: welcome.md
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: test-document.md
+File info created for: test-document.md.meta
+File info created for: welcome.md
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: test-document.md
+File info created for: test-document.md.meta
+File info created for: welcome.md
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2Fclaude-code-auto-save-system-implementation-summary.md
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info result: Found
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2Fclaude-code-auto-save-system-implementation-summary.md
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info result: Found
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZC5tZXRh
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZC5tZXRh
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2Ftest-document.md.meta
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+File info created for: test-document.md.meta
+File info result: Found
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZA==
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZA==
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2Ftest-document.md
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+File info created for: test-document.md
+File info result: Found
+Deleting file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZC5tZXRh
+Decoded file path for deletion: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+File deleted successfully: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: test-document.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+File removed: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md.meta
+File removed: /Users/tehrani/Documents/claude-outputs/latest/test-document.md.meta
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+File info created for: test-document.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: test-document.md
+File info created for: welcome.md
+Deleting file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGdGVzdC1kb2N1bWVudC5tZA==
+Decoded file path for deletion: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+File deleted successfully: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+File removed: /Users/tehrani/Documents/claude-outputs/2025-07-28/test-document.md
+File removed: /Users/tehrani/Documents/claude-outputs/latest/test-document.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: scroll-test.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGWUVTT0RfQ29ubmVjdG9yR2F0ZXdheV8lRTglQTglQUQlRTglQTglODglRTYlODAlOUQlRTYlODMlQjMlRTglQTclQTMlRTglQUElQUMubWQ=
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGWUVTT0RfQ29ubmVjdG9yR2F0ZXdheV8lRTglQTglQUQlRTglQTglODglRTYlODAlOUQlRTYlODMlQjMlRTglQTclQTMlRTglQUElQUMubWQ=
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2FYESOD_ConnectorGateway_%E8%A8%AD%E8%A8%88%E6%80%9D%E6%83%B3%E8%A7%A3%E8%AA%AC.md
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info result: Found
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: scroll-test.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: scroll-test.md
+File info created for: welcome.md
+File info created for: setup-complete.md
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: welcome.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: setup-complete.md
+File info created for: scroll-test.md
+WebSocket client disconnected
+WebSocket client connected
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/YESOD_ConnectorGateway_設計思想解説.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-concept.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-outputs-viewer-design.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/scroll-test.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/setup-complete.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/welcome.md
+File info created for: YESOD_ConnectorGateway_設計思想解説.md
+File info created for: claude-outputs-viewer-concept.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-design.md
+File info created for: scroll-test.md
+File info created for: claude-outputs-viewer-design.md
+File info created for: setup-complete.md
+File info created for: welcome.md
+Fetching file with ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Raw ID: JTJGVXNlcnMlMkZ0ZWhyYW5pJTJGRG9jdW1lbnRzJTJGY2xhdWRlLW91dHB1dHMlMkYyMDI1LTA3LTI4JTJGY2xhdWRlLWNvZGUtYXV0by1zYXZlLXN5c3RlbS1pbXBsZW1lbnRhdGlvbi1zdW1tYXJ5Lm1k
+Base64 decoded: %2FUsers%2Ftehrani%2FDocuments%2Fclaude-outputs%2F2025-07-28%2Fclaude-code-auto-save-system-implementation-summary.md
+Final decoded file path: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+Getting file info for: /Users/tehrani/Documents/claude-outputs/2025-07-28/claude-code-auto-save-system-implementation-summary.md
+File info created for: claude-code-auto-save-system-implementation-summary.md
+File info result: Found
+WebSocket client disconnected
+
+Received SIGTERM, shutting down gracefully...
+File watcher stopped
+Server stopped

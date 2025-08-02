@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Outputs Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- PrimeVue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/primevue@4.3.6/resources/themes/lara-dark-blue/theme.css">
+    <link rel="stylesheet" href="https://unpkg.com/primevue@4.3.6/resources/primevue.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeicons@7.0.0/primeicons.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="layout-wrapper layout-static layout-static-inactive">
+    <!-- Layout Topbar -->
+    <div class="layout-topbar">
+        <div class="layout-topbar-logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14,2 14,8 20,8'/%3E%3Cline x1='16' y1='13' x2='8' y2='13'/%3E%3Cline x1='16' y1='17' x2='8' y2='17'/%3E%3Cpolyline points='10,9 9,9 8,9'/%3E%3C/svg%3E" alt="logo">
+            <span>Claude Outputs</span>
+        </div>
+        
+        <div class="layout-topbar-menu">
+            <div class="layout-topbar-menu-content">
+                <!-- Status Indicator -->
+                <div class="status-indicator-container">
+                    <div class="status-indicator-content">
+                        <span class="status-dot" id="status-dot"></span>
+                        <div class="status-text-container">
+                            <span class="status-title" id="status-text">ファイル監視中</span>
+                            <span class="status-subtitle" id="status-subtitle">新しいドキュメントを監視しています</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search -->
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search documents...">
+                        <i class="pi pi-search search-icon"></i>
+                        <button class="search-clear-btn" id="search-clear" style="display: none;">
+                            <i class="pi pi-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- View Mode Switch -->
+                <div class="view-mode-switch hidden" id="header-view-switch">
+                    <div class="switch-container">
+                        <label class="switch-label">
+                            <input type="checkbox" id="view-mode-toggle" class="switch-input">
+                            <span class="switch-slider">
+                                <i class="switch-icon left pi pi-eye"></i>
+                                <i class="switch-icon right pi pi-code"></i>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Actions -->
+                <button id="refresh-button" class="p-button p-button-icon-only p-button-rounded p-button-text mr-2" title="Refresh">
+                    <i class="pi pi-refresh"></i>
+                </button>
+                <button id="settings-button" class="p-button p-button-icon-only p-button-rounded p-button-text" title="Settings">
+                    <i class="pi pi-cog"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Sidebar -->
+    <div class="layout-sidebar">
+        <div class="layout-sidebar-content">
+            <!-- Navigation Menu -->
+            <ul class="layout-menu">
+                <li class="layout-menuitem-category">
+                    <div class="layout-menuitem-root-text">Navigation</div>
+                </li>
+                <li class="layout-menuitem">
+                    <a id="dashboard-button" class="layout-menuitem-link p-ripple active">
+                        <i class="layout-menuitem-icon pi pi-home"></i>
+                        <span class="layout-menuitem-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="layout-menuitem">
+                    <a id="files-button" class="layout-menuitem-link p-ripple">
+                        <i class="layout-menuitem-icon pi pi-folder"></i>
+                        <span class="layout-menuitem-text">Files</span>
+                    </a>
+                </li>
+                <li class="layout-menuitem">
+                    <a id="favorites-button" class="layout-menuitem-link p-ripple">
+                        <i class="layout-menuitem-icon pi pi-star"></i>
+                        <span class="layout-menuitem-text">Favorites</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- File Tree Section -->
+            <div class="layout-menuitem-category mt-4">
+                <div class="layout-menuitem-root-text">Browse</div>
+            </div>
+            <div class="layout-sidebar-files">
+                <div id="file-tree" class="p-4">
+                    <div class="text-center py-8">
+                        <i class="pi pi-folder-open text-3xl text-surface-400 mb-3"></i>
+                        <p class="text-surface-500 text-sm">Loading files...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Main -->
+    <div class="layout-main-container">
+        <div class="layout-main">
+            <!-- Dashboard Screen -->
+            <div id="welcome-screen" class="layout-content">
+                <!-- Header with stats -->
+                <div class="dashboard-header">
+                    <div class="dashboard-title">
+                        <h1>Recent Documents</h1>
+                        <p class="dashboard-subtitle">
+                            <span id="total-files">0</span> files in <span id="total-dates">0</span> directories
+                            <span class="status-indicator status-online"></span>
+                        </p>
+                    </div>
+                    <div class="dashboard-actions">
+                        <button class="p-button p-button-outlined p-button-sm">
+                            <i class="pi pi-refresh mr-2"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- File Cards Grid -->
+                <div id="file-cards-container" class="file-cards-grid">
+                    <div class="file-cards-loading">
+                        <i class="pi pi-spin pi-spinner text-2xl"></i>
+                        <p>Loading your documents...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files View -->
+            <div id="files-view" class="layout-content hidden">
+                <!-- Files Header -->
+                <div class="files-header">
+                    <div class="files-title">
+                        <h1>File Browser</h1>
+                        <p class="files-subtitle">
+                            Browse and manage your document files
+                        </p>
+                    </div>
+                    <div class="files-actions">
+                        <button class="p-button p-button-outlined p-button-sm">
+                            <i class="pi pi-refresh mr-2"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Files Grid View -->
+                <div id="files-grid-container" class="files-grid">
+                    <div class="files-loading">
+                        <i class="pi pi-spin pi-spinner text-2xl"></i>
+                        <p>Loading files...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites View -->
+            <div id="favorites-view" class="layout-content hidden">
+                <!-- Favorites Header -->
+                <div class="favorites-header">
+                    <div class="favorites-title">
+                        <h1>Favorite Files</h1>
+                        <p class="favorites-subtitle">
+                            Your starred and bookmarked documents
+                        </p>
+                    </div>
+                    <div class="favorites-actions">
+                        <button class="p-button p-button-outlined p-button-sm" id="clear-favorites-btn">
+                            <i class="pi pi-trash mr-2"></i>
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Favorites Grid View -->
+                <div id="favorites-grid-container" class="favorites-grid">
+                    <div class="favorites-empty">
+                        <i class="pi pi-star text-3xl text-surface-400 mb-3"></i>
+                        <p>No favorite files yet</p>
+                        <p class="text-sm text-surface-500">Star files to add them to your favorites</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Viewer -->
+            <div id="file-viewer" class="layout-content hidden">
+                <!-- File Header Card -->
+                <div class="p-card mb-6 sticky top-6 z-10">
+                    <div class="p-card-header">
+                        <h3 class="p-card-title text-2xl" id="file-title"></h3>
+                        <div class="editor-toolbar" id="editor-toolbar">
+                            <button class="edit-toggle-btn p-button p-button-sm p-button-outlined" id="edit-toggle-btn">
+                                <i class="pi pi-pencil"></i>
+                                <span class="ml-2">Edit</span>
+                            </button>
+                            <span class="save-status" id="save-status">
+                                <i class="pi pi-check"></i>
+                                <span class="status-text ml-1">保存済み</span>
+                            </span>
+                            <span class="auto-save-indicator hidden" id="auto-save-indicator">
+                                <i class="pi pi-spin pi-spinner text-blue-400"></i>
+                                <span class="ml-1 text-sm text-blue-400">自動保存中...</span>
+                            </span>
+                            <button class="preview-btn p-button p-button-sm p-button-outlined" id="preview-btn" style="display: none;">
+                                <i class="pi pi-eye"></i>
+                                <span class="ml-2">Preview</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Card -->
+                <div class="p-card flex-1 mb-6">
+                    <div class="p-card-content">
+                        <div id="markdown-content" class="max-w-none leading-relaxed prose prose-slate prose-lg max-w-full prose-headings:text-slate-200 prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-slate-200"></div>
+                        <pre id="raw-content" class="font-jetbrains text-sm bg-[#1e1e1e] text-[#d4d4d4] p-6 rounded-xl border border-[#333333] hidden"></pre>
+                        <div id="editor-container" class="hidden">
+                            <!-- エディタがここに挿入される -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Metadata Card (Bottom) -->
+                <div class="p-card">
+                    <div class="p-card-content">
+                        <div class="flex gap-4 text-sm">
+                            <span class="p-tag">
+                                <i class="pi pi-file mr-2"></i>
+                                <span id="file-size"></span>
+                            </span>
+                            <span class="p-tag p-tag-info">
+                                <i class="pi pi-clock mr-2"></i>
+                                <span id="file-modified"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PrimeVue Dialog for Settings -->
+    <div id="settings-modal" class="p-dialog p-component p-dialog-mask p-dialog-center p-dialog-visible" style="display: none;">
+        <div class="p-dialog-wrapper">
+            <div class="p-dialog">
+                <div class="p-dialog-header">
+                    <span class="p-dialog-title">設定</span>
+                    <div class="p-dialog-header-icons">
+                        <button id="close-settings" class="p-dialog-header-icon p-dialog-header-close p-link">
+                            <span class="p-dialog-header-close-icon pi pi-times"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-dialog-content">
+                    <div class="mb-6">
+                        <div class="p-field-checkbox mb-3">
+                            <input type="checkbox" id="notifications-enabled" checked class="p-checkbox-input">
+                            <label for="notifications-enabled" class="p-checkbox-label">通知を有効にする</label>
+                        </div>
+                        <p class="text-sm text-green-300 ml-7">新しいファイルが作成されたときにシステム通知を表示</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="p-field-checkbox mb-3">
+                            <input type="checkbox" id="auto-open-enabled" checked class="p-checkbox-input">
+                            <label for="auto-open-enabled" class="p-checkbox-label">ブラウザを自動起動</label>
+                        </div>
+                        <p class="text-sm text-green-300 ml-7">新しいファイルが検出されたときにブラウザを自動的に開く</p>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block font-medium mb-2 text-green-200">監視ディレクトリ:</label>
+                        <input type="text" id="watch-directory" value="/Users/tehrani/Documents/claude-outputs" readonly class="p-inputtext w-full font-mono">
+                        <p class="text-sm text-green-300 mt-2">新しいファイルを監視するディレクトリ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PrimeVue Toast Container -->
+    <div id="toast-container" class="p-toast p-toast-top-right"></div>
+
+    <!-- Image Zoom Modal -->
+    <div id="image-zoom-modal" class="image-zoom-modal hidden">
+        <div class="image-zoom-backdrop"></div>
+        <div class="image-zoom-container">
+            <div class="image-zoom-header">
+                <div class="image-zoom-info">
+                    <span class="image-zoom-title" id="zoom-image-title">Image</span>
+                    <span class="image-zoom-size" id="zoom-image-size"></span>
+                </div>
+                <div class="image-zoom-controls">
+                    <button class="zoom-control-btn" id="zoom-out-btn" title="Zoom Out (-)">
+                        <i class="pi pi-minus"></i>
+                    </button>
+                    <span class="zoom-level" id="zoom-level">100%</span>
+                    <button class="zoom-control-btn" id="zoom-in-btn" title="Zoom In (+)">
+                        <i class="pi pi-plus"></i>
+                    </button>
+                    <button class="zoom-control-btn" id="zoom-reset-btn" title="Reset Zoom (0)">
+                        <i class="pi pi-refresh"></i>
+                    </button>
+                    <button class="zoom-control-btn" id="zoom-fullscreen-btn" title="Fullscreen (F)">
+                        <i class="pi pi-window-maximize"></i>
+                    </button>
+                    <button class="zoom-control-btn zoom-close-btn" id="zoom-close-btn" title="Close (Esc)">
+                        <i class="pi pi-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="image-zoom-content" id="image-zoom-content">
+                <div class="image-zoom-wrapper" id="image-zoom-wrapper">
+                    <img class="zoom-image" id="zoom-image" src="" alt="">
+                </div>
+            </div>
+            <div class="image-zoom-footer">
+                <div class="zoom-instructions">
+                    <span>Click and drag to pan • Scroll to zoom • Double-click to fit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/core/core.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/toast/toast.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/dialog/dialog.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/sidebar/sidebar.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/card/card.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/button/button.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/inputtext/inputtext.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/checkbox/checkbox.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/tag/tag.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/breadcrumb/breadcrumb.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/accordion/accordion.min.js"></script>
+    <script src="https://unpkg.com/primevue@4.3.6/tree/tree.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    
+    <!-- CodeMirror Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+    
+    <script src="js/edit-mode-toggle.js"></script>
+    <script src="js/text-editor.js"></script>
+    <script src="js/auto-save.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- License Information -->
+    <!-- 
+    PrimeVue UI Component Library
+    Copyright (c) 2019-2024 PrimeTek
+    Licensed under the MIT License
+    https://github.com/primefaces/primevue/blob/master/LICENSE
+    
+    PrimeIcons Icon Library  
+    Copyright (c) 2019-2024 PrimeTek
+    Licensed under the MIT License
+    https://github.com/primefaces/primeicons/blob/master/LICENSE
+    
+    Vue.js Framework
+    Copyright (c) 2014-2024 Evan You
+    Licensed under the MIT License
+    https://github.com/vuejs/vue/blob/main/LICENSE
+    -->
+</body>
+</html>
