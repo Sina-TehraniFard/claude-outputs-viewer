@@ -8,7 +8,8 @@ export class TagExtractionService {
     const hashtagRegex = /#([a-zA-Z0-9\-_]+)/g
     let match
     while ((match = hashtagRegex.exec(content)) !== null) {
-      tags.push(match[1])
+      const tagValue = match[1]
+      tags.push(tagValue)
     }
     
     // Extract tags from frontmatter

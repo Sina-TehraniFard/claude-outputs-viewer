@@ -4,7 +4,7 @@ export class Tags {
   }
 
   static create(values: string[] = []): Tags {
-    const uniqueValues = new Set(values.map(tag => tag.trim().toLowerCase()))
+    const uniqueValues = new Set(values.map(tag => tag.trim()))
     return new Tags(uniqueValues)
   }
 
@@ -33,11 +33,21 @@ export class Tags {
   }
 
   has(tag: string): boolean {
-    return this._values.has(tag.trim().toLowerCase())
+    return this._values.has(tag.trim())
+  }
+
+  hasCaseInsensitive(tag: string): boolean {
+    const searchTag = tag.trim().toLowerCase()
+    for (const existingTag of this._values) {
+      if (existingTag.toLowerCase() === searchTag) {
+        return true
+      }
+    }
+    return false
   }
 
   add(tag: string): void {
-    const normalizedTag = tag.trim().toLowerCase()
+    const normalizedTag = tag.trim()
     if (normalizedTag) {
       this.validate(new Set([normalizedTag]))
       this._values.add(normalizedTag)
@@ -45,7 +55,7 @@ export class Tags {
   }
 
   remove(tag: string): void {
-    this._values.delete(tag.trim().toLowerCase())
+    this._values.delete(tag.trim())
   }
 
   intersects(other: Tags): boolean {
@@ -57,9 +67,27 @@ export class Tags {
     return false
   }
 
+  intersectsCaseInsensitive(other: Tags): boolean {
+    for (const tag of this._values) {
+      if (other.hasCaseInsensitive(tag)) {
+        return true
+      }
+    }
+    return false
+  }
+
   containsAll(other: Tags): boolean {
     for (const tag of other._values) {
       if (!this.has(tag)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  containsAllCaseInsensitive(other: Tags): boolean {
+    for (const tag of other._values) {
+      if (!this.hasCaseInsensitive(tag)) {
         return false
       }
     }

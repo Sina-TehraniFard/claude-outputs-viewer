@@ -41,9 +41,12 @@ export class FileSystemFileRepository implements IFileRepository {
           const content = await readFile(fullPath, 'utf-8')
           tags = this.tagExtractionService.extractFromMarkdown(content)
           preview = this.tagExtractionService.generatePreview(content)
+          this.logger.debug(`Extracted tags for ${name}: [${tags.values.join(', ')}]`)
         } catch (error) {
           this.logger.warn(`Failed to read file content: ${filePath.value}`, error as Error)
         }
+      } else {
+        this.logger.debug(`Skipping tag extraction for non-editable file: ${name}`)
       }
 
       return File.create({
@@ -111,16 +114,34 @@ export class FileSystemFileRepository implements IFileRepository {
 
   async findByTags(tags: Tags, operator: 'AND' | 'OR'): Promise<File[]> {
     try {
+      this.logger.info(`Starting findByTags with tags: [${tags.values.join(', ')}], operator: ${operator}`)
+      
       const allFiles = await this.getAllFiles()
+      this.logger.info(`Found ${allFiles.length} total files`)
+      
+      // Debug: Show first few files and their tags
+      allFiles.slice(0, 3).forEach((file, index) => {
+        this.logger.info(`File ${index + 1}: ${file.name} - Tags: [${file.tags.values.join(', ')}]`)
+      })
       
       const matchingFiles = allFiles.filter(file => {
         const fileTags = file.tags
+        let matches = false
         
         if (operator === 'AND') {
-          return tags.containsAll(fileTags)
+          matches = fileTags.containsAllCaseInsensitive(tags)
+          this.logger.debug(`AND check for ${file.name}: fileTags=[${fileTags.values.join(', ')}] contains all searchTags=[${tags.values.join(', ')}] = ${matches}`)
         } else {
-          return tags.intersects(fileTags)
+          matches = fileTags.intersectsCaseInsensitive(tags)
+          this.logger.debug(`OR check for ${file.name}: fileTags=[${fileTags.values.join(', ')}] intersects searchTags=[${tags.values.join(', ')}] = ${matches}`)
         }
+        
+        return matches
+      })
+
+      this.logger.info(`Found ${matchingFiles.length} matching files`)
+      matchingFiles.forEach(file => {
+        this.logger.info(`Matching file: ${file.name} - Tags: [${file.tags.values.join(', ')}]`)
       })
 
       return matchingFiles

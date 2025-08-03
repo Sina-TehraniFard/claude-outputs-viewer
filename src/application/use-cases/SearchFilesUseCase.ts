@@ -94,9 +94,12 @@ export class SearchFilesUseCase {
   private getMatchedTags(fileTags: Tags, searchTags: Tags, _operator: 'AND' | 'OR'): string[] {
     const matched: string[] = []
     
-    for (const tag of searchTags.values) {
-      if (fileTags.has(tag)) {
-        matched.push(tag)
+    for (const searchTag of searchTags.values) {
+      for (const fileTag of fileTags.values) {
+        if (fileTag.toLowerCase() === searchTag.toLowerCase()) {
+          matched.push(fileTag) // Return the actual file tag, not the search tag
+          break
+        }
       }
     }
     

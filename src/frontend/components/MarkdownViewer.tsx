@@ -70,7 +70,7 @@ function MermaidDiagram({ chart }: { chart: string }) {
         gantt: {
           useMaxWidth: true,
         },
-        gitgraph: {
+        gitGraph: {
           useMaxWidth: true
         }
       })
@@ -181,15 +181,15 @@ export function MarkdownViewer({ content, className = '' }: MarkdownViewerProps)
         rehypePlugins={[rehypeKatex, rehypeHighlight, rehypeRaw]}
         components={{
           // Enhanced code block component with mermaid support
-          code({ node, inline, className, children, ...props }) {
+          code({ node, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
             const language = match ? match[1] : ''
 
-            if (!inline && language === 'mermaid') {
+            if (language === 'mermaid') {
               return <MermaidDiagram chart={String(children).replace(/\n$/, '')} />
             }
 
-            if (!inline) {
+            if (className) {
               return (
                 <pre className="relative">
                   <code className={className} {...props}>

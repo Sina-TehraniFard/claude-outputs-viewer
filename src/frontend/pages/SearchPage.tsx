@@ -56,16 +56,10 @@ export function SearchPage() {
     }
   }
 
-  const handleSearch = async () => {
-    if (selectedTags.length === 0) {
+  const executeSearch = async (query: SearchQuery) => {
+    if (query.tags.length === 0) {
       setError('検索するために少なくとも1つのタグを選択してください')
       return
-    }
-
-    const query: SearchQuery = {
-      tags: selectedTags,
-      operator,
-      includeContent
     }
 
     try {
@@ -81,15 +75,56 @@ export function SearchPage() {
     }
   }
 
+  const handleSearch = async () => {
+    const query: SearchQuery = {
+      tags: selectedTags,
+      operator,
+      includeContent
+    }
+    await executeSearch(query)
+  }
+
   const addTag = (tag: string) => {
     if (!selectedTags.includes(tag)) {
-      setSelectedTags([...selectedTags, tag])
+      const newSelectedTags = [...selectedTags, tag]
+      setSelectedTags(newSelectedTags)
       setTagInput('')
+      
+      // Auto-search when tags are selected
+      setTimeout(() => {
+        const query: SearchQuery = {
+          tags: newSelectedTags,
+          operator,
+          includeContent
+        }
+        executeSearch(query)
+      }, 100) // Small delay to ensure state is updated
     }
   }
 
   const removeTag = (tag: string) => {
-    setSelectedTags(selectedTags.filter(t => t !== tag))
+    const newSelectedTags = selectedTags.filter(t => t !== tag)
+    setSelectedTags(newSelectedTags)
+    
+    // Auto-search when tags are removed, or clear results if no tags
+    if (newSelectedTags.length > 0) {
+      setTimeout(() => {
+        const query: SearchQuery = {
+          tags: newSelectedTags,
+          operator,
+          includeContent
+        }
+        executeSearch(query)
+      }, 100)
+    } else {
+      // Clear results when no tags are selected
+      setSearchResults([])
+      setSearchQuery({
+        tags: [],
+        operator: 'OR',
+        includeContent: false
+      })
+    }
   }
 
   const clearSearch = () => {
@@ -228,14 +263,38 @@ export function SearchPage() {
                 <Button
                   variant={operator === 'OR' ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => setOperator('OR')}
+                  onClick={() => {
+                    setOperator('OR')
+                    if (selectedTags.length > 0) {
+                      setTimeout(() => {
+                        const query: SearchQuery = {
+                          tags: selectedTags,
+                          operator: 'OR',
+                          includeContent
+                        }
+                        executeSearch(query)
+                      }, 100)
+                    }
+                  }}
                 >
                   OR (いずれかのタグ)
                 </Button>
                 <Button
                   variant={operator === 'AND' ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => setOperator('AND')}
+                  onClick={() => {
+                    setOperator('AND')
+                    if (selectedTags.length > 0) {
+                      setTimeout(() => {
+                        const query: SearchQuery = {
+                          tags: selectedTags,
+                          operator: 'AND',
+                          includeContent
+                        }
+                        executeSearch(query)
+                      }, 100)
+                    }
+                  }}
                 >
                   AND (すべてのタグ)
                 </Button>

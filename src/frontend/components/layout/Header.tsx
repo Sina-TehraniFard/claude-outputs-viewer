@@ -1,6 +1,8 @@
 import { Menu, Moon, Sun, Search } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { useApp, useAppActions } from '../../contexts/AppContext'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 interface HeaderProps {
   onToggleSidebar: () => void
@@ -9,10 +11,27 @@ interface HeaderProps {
 export function Header({ onToggleSidebar }: HeaderProps) {
   const { state } = useApp()
   const { setTheme } = useAppActions()
+  const navigate = useNavigate()
 
   const toggleTheme = () => {
     setTheme(state.theme === 'light' ? 'dark' : 'light')
   }
+
+  const openSearch = () => {
+    navigate('/search')
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        openSearch()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <header className="h-16 border-b border-border bg-background/80 backdrop-blur-3xl backdrop-saturate-150 backdrop-brightness-125 sticky top-0 z-30">
@@ -39,7 +58,10 @@ export function Header({ onToggleSidebar }: HeaderProps) {
           {/* Quick Search */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted/50 rounded-md hover:bg-muted transition-colors cursor-pointer">
+              <div 
+                onClick={openSearch}
+                className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted/50 rounded-md hover:bg-muted transition-colors cursor-pointer"
+              >
                 <Search className="w-4 h-4 text-muted-foreground" />
                 <span className="text-xs text-muted-foreground">クイック検索...</span>
                 <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
