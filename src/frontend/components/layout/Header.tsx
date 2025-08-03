@@ -15,7 +15,7 @@ export function Header({ onToggleSidebar }: HeaderProps) {
   }
 
   return (
-    <header className="h-16 border-b border-border bg-background sticky top-0 z-30">
+    <header className="h-16 border-b border-border bg-background/80 backdrop-blur-3xl backdrop-saturate-150 backdrop-brightness-125 sticky top-0 z-30">
       <div className="flex h-full items-center justify-between px-4">
         <div className="flex items-center gap-4">
           <Tooltip>
@@ -33,20 +33,6 @@ export function Header({ onToggleSidebar }: HeaderProps) {
             </TooltipContent>
           </Tooltip>
 
-          {/* Breadcrumb or Page Title */}
-          <div className="flex items-center gap-2 text-sm">
-            {state.selectedFile ? (
-              <>
-                <span className="text-muted-foreground">{state.currentDirectory}</span>
-                <span className="text-muted-foreground">/</span>
-                <span className="font-medium text-foreground">{state.selectedFile.name}</span>
-              </>
-            ) : state.currentDirectory ? (
-              <span className="font-medium text-foreground">{state.currentDirectory}</span>
-            ) : (
-              <span className="font-medium text-foreground">ダッシュボード</span>
-            )}
-          </div>
         </div>
 
         <div className="flex items-center gap-2">

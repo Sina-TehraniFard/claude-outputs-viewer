@@ -1,6 +1,8 @@
 import { ReactNode, useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
+import { DirectorySidebar } from './DirectorySidebar'
 import { useApp } from '../../contexts/AppContext'
 import { cn } from '../../lib/utils'
 
@@ -10,7 +12,9 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const { state } = useApp()
+  const location = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [directorySidebarOpen, setDirectorySidebarOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -19,6 +23,7 @@ export function Layout({ children }: LayoutProps) {
       setIsMobile(mobile)
       if (mobile) {
         setSidebarOpen(false)
+        setDirectorySidebarOpen(false)
       }
     }
     checkMobile()
@@ -26,14 +31,32 @@ export function Layout({ children }: LayoutProps) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  // ディレクトリ関連のパスかチェック
+  useEffect(() => {
+    const isDirectoryPath = location.pathname === '/directories' || 
+                           location.pathname.startsWith('/directory/') ||
+                           location.pathname.startsWith('/file/')
+    setDirectorySidebarOpen(isDirectoryPath && !isMobile)
+  }, [location, isMobile])
+
   return (
     <div className="min-h-screen bg-background">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       
+      <DirectorySidebar 
+        isOpen={directorySidebarOpen} 
+        onClose={() => setDirectorySidebarOpen(false)}
+        isMobile={isMobile}
+        sidebarOpen={sidebarOpen}
+      />
+      
       <div className={cn(
         "transition-all duration-300 ease-in-out",
-        sidebarOpen && !isMobile ? "ml-64" : "ml-16",
-        isMobile && "ml-0"
+        !isMobile && sidebarOpen && directorySidebarOpen ? "ml-[32rem]" : // 256px + 256px
+        !isMobile && !sidebarOpen && directorySidebarOpen ? "ml-80" : // 64px + 256px
+        !isMobile && sidebarOpen && !directorySidebarOpen ? "ml-64" : // 256px only
+        !isMobile && !sidebarOpen && !directorySidebarOpen ? "ml-16" : // 64px only
+        "ml-0" // mobile
       )}>
         <Header onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         

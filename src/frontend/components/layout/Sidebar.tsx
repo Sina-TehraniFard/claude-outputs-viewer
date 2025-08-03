@@ -9,12 +9,169 @@ import {
   Home,
   ChevronRight
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useApp } from '../../contexts/AppContext';
 import { cn } from '../../lib/utils';
 
 interface SidebarProps {
   isOpen: boolean;
   onToggle: () => void;
+}
+
+interface NavItemProps {
+  item: {
+    icon: any;
+    label: string;
+    path: string;
+    description: string;
+    badge?: number | null;
+  };
+  active: boolean;
+  isOpen: boolean;
+}
+
+function NavItem({ item, active, isOpen }: NavItemProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
+  const Icon = item.icon;
+
+  return (
+    <Link
+      to={item.path}
+      className={cn(
+        "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group relative overflow-hidden",
+        active 
+          ? "text-primary" 
+          : "text-muted-foreground hover:text-foreground",
+        !isOpen && "justify-center"
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)}
+    >
+      {/* Animated border - similar to dropdown menu */}
+      {isOpen ? (
+        <motion.div
+          className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-blue-400 to-blue-600"
+          initial={{ scaleY: 0, opacity: 0 }}
+          animate={{
+            scaleY: isHovered || active ? 1 : 0,
+            opacity: isHovered || active ? 1 : 0,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 25,
+            duration: 0.2
+          }}
+          style={{ originY: 0.5 }}
+        />
+      ) : (
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 w-full"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{
+            scaleX: isHovered || active ? 0.6 : 0,
+            opacity: isHovered || active ? 1 : 0,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 25,
+            duration: 0.2
+          }}
+          style={{ originX: 0.5 }}
+        >
+          <div className="h-full w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        </motion.div>
+      )}
+      
+      {/* Background overlay - only for active state */}
+      {active && (
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{
+            opacity: 1,
+            x: 0,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            duration: 0.15
+          }}
+        />
+      )}
+      
+      {/* Content wrapper with scale animation */}
+      <motion.div
+        className={cn(
+          "relative z-10 flex items-center w-full",
+          isOpen ? "gap-3" : "justify-center"
+        )}
+        animate={{
+          scale: isPressed ? 0.98 : 1,
+          x: isHovered && !active && isOpen ? 2 : 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 25,
+          duration: 0.1
+        }}
+      >
+        <Icon className={cn(
+          "w-5 h-5 flex-shrink-0",
+          active && "text-primary"
+        )} />
+        
+        {isOpen && (
+          <>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="font-medium whitespace-nowrap overflow-hidden">{item.label}</span>
+                {item.badge && (
+                  <span className="px-1.5 py-0.5 text-xs bg-primary/20 text-primary rounded-full flex-shrink-0">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground/70 mt-0.5 whitespace-nowrap overflow-hidden">
+                {item.description}
+              </p>
+            </div>
+            {active && (
+              <ChevronRight className="w-4 h-4 text-primary flex-shrink-0" />
+            )}
+          </>
+        )}
+      </motion.div>
+
+      {/* Tooltip for collapsed sidebar */}
+      {!isOpen && (
+        <div className="absolute left-full ml-2 px-2 py-1 bg-popover text-popover-foreground text-sm rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-20">
+          {item.label}
+          {item.badge && (
+            <span className="ml-2 text-xs text-muted-foreground">
+              ({item.badge})
+            </span>
+          )}
+        </div>
+      )}
+      
+      {/* Ripple effect on click */}
+      {isPressed && (
+        <motion.div
+          className="absolute inset-0 rounded-lg bg-blue-200/30"
+          initial={{ scale: 0, opacity: 0.6 }}
+          animate={{ scale: 1, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+      )}
+    </Link>
+  );
 }
 
 export function Sidebar({ isOpen, onToggle }: SidebarProps) {
@@ -65,6 +222,11 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
     if (path === '/') {
       return location.pathname === '/';
     }
+    if (path === '/directories') {
+      return location.pathname.startsWith('/directories') || 
+             location.pathname.startsWith('/directory/') ||
+             location.pathname.startsWith('/file/');
+    }
     return location.pathname.startsWith(path);
   };
 
@@ -81,7 +243,7 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 z-40 h-full bg-background border-r border-border transition-all duration-300 ease-in-out",
+          "fixed top-0 left-0 z-40 h-full bg-background/80 backdrop-blur-3xl border-r border-border transition-all duration-300 ease-in-out",
           isOpen ? "w-64" : "w-16",
           isMobile && !isOpen && "-translate-x-full"
         )}
@@ -115,59 +277,15 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
         {/* Navigation */}
         <nav className="p-2 space-y-1">
           {navItems.map((item) => {
-            const Icon = item.icon;
             const active = isActive(item.path);
             
             return (
-              <Link
+              <NavItem
                 key={item.path}
-                to={item.path}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group relative",
-                  active 
-                    ? "bg-primary/10 text-primary" 
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground",
-                  !isOpen && "justify-center"
-                )}
-              >
-                <Icon className={cn(
-                  "w-5 h-5 flex-shrink-0",
-                  active && "text-primary"
-                )} />
-                
-                {isOpen && (
-                  <>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium whitespace-nowrap overflow-hidden">{item.label}</span>
-                        {item.badge && (
-                          <span className="px-1.5 py-0.5 text-xs bg-primary/20 text-primary rounded-full flex-shrink-0">
-                            {item.badge}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-muted-foreground/70 mt-0.5 whitespace-nowrap overflow-hidden">
-                        {item.description}
-                      </p>
-                    </div>
-                    {active && (
-                      <ChevronRight className="w-4 h-4 text-primary flex-shrink-0" />
-                    )}
-                  </>
-                )}
-
-                {/* Tooltip for collapsed sidebar */}
-                {!isOpen && (
-                  <div className="absolute left-full ml-2 px-2 py-1 bg-popover text-popover-foreground text-sm rounded-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">
-                    {item.label}
-                    {item.badge && (
-                      <span className="ml-2 text-xs text-muted-foreground">
-                        ({item.badge})
-                      </span>
-                    )}
-                  </div>
-                )}
-              </Link>
+                item={item}
+                active={active}
+                isOpen={isOpen}
+              />
             );
           })}
         </nav>

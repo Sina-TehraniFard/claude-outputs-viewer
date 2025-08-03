@@ -8,8 +8,7 @@ import {
   Heart, 
   Copy, 
   Trash2,
-  Eye,
-  Download
+  Eye
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge'
@@ -18,6 +17,8 @@ import { useApp, useAppActions } from '../contexts/AppContext'
 import { api } from '../lib/api'
 import { convertToHomePath } from '../lib/path-utils'
 import { copyToClipboard } from '../lib/clipboard-utils'
+import { MarkdownViewer } from '../components/MarkdownViewer'
+import { MarkdownEditor } from '../components/MarkdownEditor'
 
 export function FileView() {
   const { filePath } = useParams<{ filePath: string }>()
@@ -36,6 +37,7 @@ export function FileView() {
       loadFileContent(decodedPath)
     }
   }, [filePath])
+
 
   const loadFileContent = async (path: string) => {
     try {
@@ -132,7 +134,7 @@ export function FileView() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-7xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
@@ -208,33 +210,34 @@ export function FileView() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Editor/Content */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              {isEditing ? (
-                <>
-                  <Edit className="h-5 w-5" />
-                  エディター
-                </>
-              ) : (
-                <>
-                  <Eye className="h-5 w-5" />
-                  コンテンツ
-                </>
-              )}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {isEditing ? (
+      {isEditing ? (
+        /* Edit Mode - Editor Only */
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Edit className="h-5 w-5" />
+                エディター
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="space-y-4">
-                <textarea
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                  className="w-full h-96 p-3 border rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="ここにコンテンツを入力してください..."
-                />
+                {file.type === 'markdown' ? (
+                  <MarkdownEditor
+                    value={editContent}
+                    onChange={setEditContent}
+                    placeholder="Markdownファイルの内容を編集...&#10;&#10;# 見出し&#10;&#10;**太字** *斜体*&#10;&#10;- リスト項目&#10;&#10;```javascript&#10;const example = 'コードブロック';&#10;```&#10;&#10;```mermaid&#10;graph TD&#10;    A[開始] --> B[処理]&#10;    B --> C[終了]&#10;```"
+                  />
+                ) : (
+                  <textarea
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)}
+                    className="w-full min-h-[500px] p-3 border rounded-md font-mono text-sm resize-y focus:outline-none focus:ring-2 focus:ring-ring bg-background"
+                    placeholder="ファイルの内容を編集..."
+                    spellCheck={false}
+                    style={{ height: `${Math.max(500, editContent.split('\n').length * 24 + 100)}px` }}
+                  />
+                )}
                 <div className="flex gap-2">
                   <Button onClick={handleSave} disabled={editContent === content}>
                     <Save className="h-4 w-4 mr-2" />
@@ -251,95 +254,33 @@ export function FileView() {
                   </Button>
                 </div>
               </div>
-            ) : (
-              <div className="prose prose-sm max-w-none">
+            </CardContent>
+          </Card>
+        </div>
+      ) : (
+        /* View Mode - Single Column */
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5" />
+                コンテンツ
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="max-w-none">
                 {file.type === 'markdown' ? (
-                  <div 
-                    className="markdown-content"
-                    dangerouslySetInnerHTML={{ 
-                      __html: content.replace(/\n/g, '<br>') 
-                    }} 
-                  />
+                  <MarkdownViewer content={content} />
                 ) : (
                   <pre className="whitespace-pre-wrap font-mono text-sm bg-muted p-4 rounded-md overflow-auto">
                     {content}
                   </pre>
                 )}
               </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Preview (for markdown) */}
-        {file.type === 'markdown' && isEditing && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Eye className="h-5 w-5" />
-                プレビュー
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div 
-                className="prose prose-sm max-w-none markdown-content"
-                dangerouslySetInnerHTML={{ 
-                  __html: editContent.replace(/\n/g, '<br>') 
-                }} 
-              />
             </CardContent>
           </Card>
-        )}
-
-        {/* File Info */}
-        {!isEditing && (
-          <Card>
-            <CardHeader>
-              <CardTitle>ファイル情報</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">パス</label>
-                <p className="font-mono text-sm">{file.path}</p>
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">サイズ</label>
-                <p>{formatFileSize(file.size)}</p>
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">タイプ</label>
-                <p className="capitalize">{file.type}</p>
-              </div>
-              
-              <div>
-                <label className="text-sm font-medium text-muted-foreground">最終更新日時</label>
-                <p>{formatDate(file.lastModified)}</p>
-              </div>
-              
-              {file.tags.length > 0 && (
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground">タグ</label>
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {file.tags.map((tag: string) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        #{tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              <div className="pt-4">
-                <Button variant="outline" className="w-full">
-                  <Download className="h-4 w-4 mr-2" />
-                  ファイルをダウンロード
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }

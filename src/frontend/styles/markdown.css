@@ -1,0 +1,591 @@
+/* Markdown Viewer Custom Styles */
+.prose {
+  color: rgb(55 65 81);
+  max-width: none;
+}
+
+.dark .prose {
+  color: rgb(229 231 235);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: rgb(17 24 39);
+  font-weight: 600;
+  scroll-margin-top: 2rem;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: rgb(248 250 252);
+}
+
+.prose h1 {
+  border-bottom: 1px solid rgb(209 213 219);
+  padding-bottom: 0.5rem;
+}
+
+.dark .prose h1 {
+  border-bottom: 1px solid rgb(55 65 81);
+}
+
+.prose h2 {
+  border-bottom: 1px solid rgb(209 213 219);
+  padding-bottom: 0.25rem;
+}
+
+.dark .prose h2 {
+  border-bottom: 1px solid rgb(55 65 81);
+}
+
+.prose blockquote {
+  border-left: 4px solid rgb(59 130 246);
+  background: rgba(59, 130, 246, 0.1);
+  margin: 1.5rem 0;
+  padding: 1rem;
+  font-style: italic;
+  color: rgb(75 85 99);
+}
+
+.dark .prose blockquote {
+  color: rgb(156 163 175);
+}
+
+.prose table {
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.prose th {
+  background: rgb(249 250 251);
+  border: 1px solid rgb(209 213 219);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: rgb(17 24 39);
+}
+
+.dark .prose th {
+  background: rgb(31 41 55);
+  border: 1px solid rgb(55 65 81);
+  color: rgb(248 250 252);
+}
+
+.prose td {
+  border: 1px solid rgb(209 213 219);
+  padding: 0.75rem;
+  color: rgb(55 65 81);
+}
+
+.dark .prose td {
+  border: 1px solid rgb(55 65 81);
+  color: rgb(229 231 235);
+}
+
+.prose tr:nth-child(even) {
+  background: rgba(249, 250, 251, 0.5);
+}
+
+.dark .prose tr:nth-child(even) {
+  background: rgba(55, 65, 81, 0.3);
+}
+
+.prose code {
+  background: rgb(243 244 246);
+  color: rgb(239 68 68);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.dark .prose code {
+  background: rgb(31 41 55);
+  color: rgb(249 250 251);
+}
+
+.prose pre {
+  background: rgb(249 250 251) !important;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.dark .prose pre {
+  background: rgb(17 24 39) !important;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 1rem;
+  display: block;
+  color: rgb(55 65 81);
+}
+
+.dark .prose pre code {
+  color: rgb(229 231 235);
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin: 0.5rem 0;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid rgb(209 213 219);
+  margin: 2rem 0;
+}
+
+.dark .prose hr {
+  border-top: 1px solid rgb(55 65 81);
+}
+
+.prose img {
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.prose figcaption {
+  text-align: center;
+  font-style: italic;
+  color: rgb(156 163 175);
+  margin-top: 0.5rem;
+}
+
+/* Mermaid diagram styling */
+.prose .mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  background: transparent;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+/* Mermaid SVG specific styling */
+.prose .mermaid svg {
+  max-width: 70%;
+  height: auto;
+  background: transparent !important;
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
+/* Clean Mermaid text styling - NO SHADOWS */
+.prose .mermaid text,
+.prose .mermaid .nodeLabel,
+.prose .mermaid .edgeLabel,
+.prose .mermaid .label,
+.prose .mermaid tspan,
+.prose .mermaid .titleText,
+.prose .mermaid .node text,
+.prose .mermaid .edge text,
+.prose .mermaid g.label text,
+.prose .mermaid g.node text,
+.prose .mermaid .actor text,
+.prose .mermaid .messageText,
+.prose .mermaid .mindmap text,
+.prose .mermaid .mindmap tspan,
+.prose .mermaid .mindmap .label {
+  fill: #1f2937 !important;
+  color: #1f2937 !important;
+  font-family: ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-shadow: none !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+}
+
+/* Clean text in dark mode too */
+.dark .prose .mermaid text,
+.dark .prose .mermaid .nodeLabel,
+.dark .prose .mermaid .edgeLabel,
+.dark .prose .mermaid .label,
+.dark .prose .mermaid tspan,
+.dark .prose .mermaid .titleText,
+.dark .prose .mermaid .node text,
+.dark .prose .mermaid .edge text,
+.dark .prose .mermaid g.label text,
+.dark .prose .mermaid g.node text,
+.dark .prose .mermaid .actor text,
+.dark .prose .mermaid .messageText,
+.dark .prose .mermaid .mindmap text,
+.dark .prose .mermaid .mindmap tspan,
+.dark .prose .mermaid .mindmap .label {
+  fill: #1f2937 !important;
+  color: #1f2937 !important;
+  text-shadow: none !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+}
+
+/* Mermaid flowchart styling - Light backgrounds for contrast */
+.prose .mermaid .node rect,
+.prose .mermaid .node circle,
+.prose .mermaid .node ellipse,
+.prose .mermaid .node polygon {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+/* Keep light backgrounds even in dark mode for text visibility */
+.dark .prose .mermaid .node rect,
+.dark .prose .mermaid .node circle,
+.dark .prose .mermaid .node ellipse,
+.dark .prose .mermaid .node polygon {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+/* Mermaid sequence diagram styling */
+.prose .mermaid .actor {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+.dark .prose .mermaid .actor {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+}
+
+.prose .mermaid .actor-line {
+  stroke: rgb(107 114 128) !important;
+}
+
+.prose .mermaid .messageLine0,
+.prose .mermaid .messageLine1 {
+  stroke: rgb(107 114 128) !important;
+}
+
+.prose .mermaid .messageText {
+  fill: #111827 !important;
+  color: #111827 !important;
+  font-family: ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* Mermaid class diagram styling - ALL WHITE BACKGROUNDS */
+.prose .mermaid .classBox,
+.prose .mermaid .class rect,
+.prose .mermaid .class .classGroup rect,
+.prose .mermaid g.classGroup rect,
+.prose .mermaid g.class rect,
+.prose .mermaid rect.class,
+.prose .mermaid rect.classBox,
+.prose .mermaid .classDiagram rect,
+.prose .mermaid .er rect,
+.prose .mermaid .entity rect {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+/* Force white backgrounds even in dark mode */
+.dark .prose .mermaid .classBox,
+.dark .prose .mermaid .class rect,
+.dark .prose .mermaid .class .classGroup rect,
+.dark .prose .mermaid g.classGroup rect,
+.dark .prose .mermaid g.class rect,
+.dark .prose .mermaid rect.class,
+.dark .prose .mermaid rect.classBox,
+.dark .prose .mermaid .classDiagram rect,
+.dark .prose .mermaid .er rect,
+.dark .prose .mermaid .entity rect {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+/* Ultra-aggressive override for all Mermaid elements */
+.prose .mermaid rect[fill],
+.prose .mermaid circle[fill],
+.prose .mermaid ellipse[fill],
+.prose .mermaid polygon[fill],
+.prose .mermaid path[fill],
+.dark .prose .mermaid rect[fill],
+.dark .prose .mermaid circle[fill],
+.dark .prose .mermaid ellipse[fill],
+.dark .prose .mermaid polygon[fill],
+.dark .prose .mermaid path[fill] {
+  fill: rgb(255 255 255) !important;
+}
+
+/* Force all shape elements to white background */
+.prose .mermaid *[fill*="#"] {
+  fill: rgb(255 255 255) !important;
+}
+
+.dark .prose .mermaid *[fill*="#"] {
+  fill: rgb(255 255 255) !important;
+}
+
+/* Override any background fills */
+.prose .mermaid [fill="#1f2937"],
+.prose .mermaid [fill="#374151"],
+.prose .mermaid [fill="#4b5563"],
+.prose .mermaid [fill="#111827"],
+.prose .mermaid [fill="#000000"],
+.prose .mermaid [fill="black"],
+.dark .prose .mermaid [fill="#1f2937"],
+.dark .prose .mermaid [fill="#374151"],
+.dark .prose .mermaid [fill="#4b5563"],
+.dark .prose .mermaid [fill="#111827"],
+.dark .prose .mermaid [fill="#000000"],
+.dark .prose .mermaid [fill="black"] {
+  fill: rgb(255 255 255) !important;
+}
+
+/* Silk-like Beautiful Mindmap Styling */
+.prose .mermaid .mindmap-node text,
+.prose .mermaid .mindmap .node text,
+.prose .mermaid g.mindmap text,
+.prose .mermaid g.mindmap tspan,
+.dark .prose .mermaid .mindmap-node text,
+.dark .prose .mermaid .mindmap .node text,
+.dark .prose .mermaid g.mindmap text,
+.dark .prose .mermaid g.mindmap tspan {
+  fill: #1f2937 !important;
+  color: #1f2937 !important;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.2px !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Elegant Mindmap Container - NO BORDERS */
+.prose .mermaid {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  backdrop-filter: blur(10px) !important;
+  border: none !important;
+}
+
+.dark .prose .mermaid {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)) !important;
+  border: none !important;
+}
+
+/* Clean override for inline styles */
+.prose .mermaid tspan[style*="fill"],
+.prose .mermaid text[style*="fill"],
+.prose .mermaid tspan[style*="color"],
+.prose .mermaid text[style*="color"],
+.dark .prose .mermaid tspan[style*="fill"],
+.dark .prose .mermaid text[style*="fill"],
+.dark .prose .mermaid tspan[style*="color"],
+.dark .prose .mermaid text[style*="color"] {
+  fill: #1f2937 !important;
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+/* Silk-like animations and transitions */
+.prose .mermaid circle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.prose .mermaid circle:hover {
+  transform: scale(1.05) !important;
+  filter: drop-shadow(0 4px 16px rgba(59, 130, 246, 0.3)) !important;
+}
+
+.prose .mermaid path,
+.prose .mermaid line {
+  stroke: rgba(59, 130, 246, 0.4) !important;
+  stroke-width: 1.5px !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark .prose .mermaid path,
+.dark .prose .mermaid line {
+  stroke: rgba(59, 130, 246, 0.6) !important;
+}
+
+/* Fade-in animation for the entire mindmap */
+.prose .mermaid {
+  animation: fadeInSilk 0.8s ease-out !important;
+}
+
+@keyframes fadeInSilk {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Beautiful Gradient Mindmap Nodes with Mont Blanc Center */
+.prose .mermaid .mindmap-node,
+.prose .mermaid .mindmap circle,
+.prose .mermaid circle,
+.prose .mermaid .node circle,
+.prose .mermaid g circle {
+  fill: url(#mindmapGradient) !important;
+  stroke: rgba(59, 130, 246, 0.6) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Mont Blanc color for center node */
+.prose .mermaid g circle:first-of-type,
+.prose .mermaid .mindmap circle:first-child {
+  stroke: #4A3728 !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 3px 12px rgba(74, 55, 40, 0.3)) !important;
+}
+
+.dark .prose .mermaid .mindmap-node,
+.dark .prose .mermaid .mindmap circle,
+.dark .prose .mermaid circle,
+.dark .prose .mermaid .node circle,
+.dark .prose .mermaid g circle {
+  fill: rgba(255, 255, 255, 0.95) !important;
+  stroke: rgba(59, 130, 246, 0.8) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2)) !important;
+}
+
+/* Mont Blanc color for center node in dark mode */
+.dark .prose .mermaid g circle:first-of-type,
+.dark .prose .mermaid .mindmap circle:first-child {
+  stroke: #6B4E3D !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 3px 12px rgba(107, 78, 61, 0.4)) !important;
+}
+
+/* Nuclear option - override ALL dark shapes */
+.prose .mermaid * {
+  /* Only target elements that have dark fills */
+}
+
+.prose .mermaid *[style*="fill:#1"],
+.prose .mermaid *[style*="fill:#0"],
+.prose .mermaid *[style*="fill:#2"],
+.prose .mermaid *[style*="fill:#3"],
+.prose .mermaid *[style*="fill:#4"],
+.dark .prose .mermaid *[style*="fill:#1"],
+.dark .prose .mermaid *[style*="fill:#0"],
+.dark .prose .mermaid *[style*="fill:#2"],
+.dark .prose .mermaid *[style*="fill:#3"],
+.dark .prose .mermaid *[style*="fill:#4"] {
+  fill: rgb(255 255 255) !important;
+  stroke: rgb(59 130 246) !important;
+  stroke-width: 2px !important;
+}
+
+/* Mermaid gitgraph styling */
+.prose .mermaid .commit-id,
+.prose .mermaid .commit-msg,
+.prose .mermaid .branch-label {
+  fill: rgb(229 231 235) !important;
+  font-family: ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* Task list styling */
+.prose .task-list-item {
+  list-style: none;
+  margin-left: -1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose .task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+/* Highlight.js theme adjustments for better integration */
+.hljs {
+  background: rgb(249 250 251) !important;
+  color: rgb(55 65 81) !important;
+}
+
+.dark .hljs {
+  background: rgb(17 24 39) !important;
+  color: rgb(229 231 235) !important;
+}
+
+/* Custom scrollbar for code blocks */
+.prose pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.prose pre::-webkit-scrollbar-track {
+  background: rgb(243 244 246);
+  border-radius: 0.25rem;
+}
+
+.dark .prose pre::-webkit-scrollbar-track {
+  background: rgb(31 41 55);
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  background: rgb(209 213 219);
+  border-radius: 0.25rem;
+}
+
+.dark .prose pre::-webkit-scrollbar-thumb {
+  background: rgb(55 65 81);
+}
+
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: rgb(156 163 175);
+}
+
+.dark .prose pre::-webkit-scrollbar-thumb:hover {
+  background: rgb(75 85 99);
+}
+
+/* Copy button for code blocks */
+.prose pre .copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  color: rgb(229 231 235);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.prose pre:hover .copy-button {
+  opacity: 1;
+}
+
+.prose pre .copy-button:hover {
+  background: rgb(75 85 99);
+}
