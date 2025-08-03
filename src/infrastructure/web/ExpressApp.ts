@@ -2,15 +2,18 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import { createServer } from 'http'
 import { DirectoryController } from '../../presentation/controllers/DirectoryController'
 import { FileController } from '../../presentation/controllers/FileController'
 import { SearchController } from '../../presentation/controllers/SearchController'
 import { ErrorHandler } from '../../presentation/middleware/ErrorHandler'
 import { SecurityMiddleware } from '../../presentation/middleware/SecurityMiddleware'
+import { NotificationService } from '../services/NotificationService'
 import { ILogger } from '../../application/ports/ILogger'
 
 export class ExpressApp {
   private app: express.Application
+  private httpServer: any
   private server?: any
 
   constructor(
@@ -19,12 +22,15 @@ export class ExpressApp {
     private readonly searchController: SearchController,
     private readonly errorHandler: ErrorHandler,
     private readonly securityMiddleware: SecurityMiddleware,
+    private readonly notificationService: NotificationService,
     private readonly logger: ILogger
   ) {
     this.app = express()
+    this.httpServer = createServer(this.app)
     this.setupMiddleware()
     this.setupRoutes()
     this.setupErrorHandling()
+    this.setupNotifications()
   }
 
   private setupMiddleware(): void {
@@ -124,12 +130,16 @@ export class ExpressApp {
     this.app.use(this.errorHandler.handle.bind(this.errorHandler))
   }
 
+  private setupNotifications(): void {
+    this.notificationService.initialize(this.httpServer)
+  }
+
   getApp(): express.Application {
     return this.app
   }
 
   start(port: number = 3001): void {
-    this.server = this.app.listen(port, () => {
+    this.server = this.httpServer.listen(port, () => {
       this.logger.info(`Server started on port ${port}`)
     })
     
@@ -141,6 +151,7 @@ export class ExpressApp {
 
   stop(): void {
     if (this.server) {
+      this.notificationService.shutdown()
       this.server.close()
     }
   }

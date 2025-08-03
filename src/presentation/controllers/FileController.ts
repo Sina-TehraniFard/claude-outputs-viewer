@@ -141,7 +141,7 @@ export class FileController {
         data: result
       })
     } catch (error) {
-      this.logger.error('FileController.updateFileContent failed', error as Error)
+      this.logger.error('FileController.updateFileContent failed', error as Error, { filePath, contentLength: content?.length })
       
       const errorMessage = (error as Error).message
       const isNotFound = errorMessage.includes('not found')
@@ -151,7 +151,8 @@ export class FileController {
         error: {
           code: isNotFound ? 'FILE_NOT_FOUND' : 'SERVER_ERROR',
           message: isNotFound ? errorMessage : 'Failed to update file content',
-          timestamp: new Date()
+          timestamp: new Date(),
+          details: errorMessage
         }
       })
     }

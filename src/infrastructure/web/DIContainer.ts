@@ -16,6 +16,8 @@ import { ConsoleLogger } from '../adapters/ConsoleLogger'
 import { FileSystemDirectoryRepository } from '../repositories/FileSystemDirectoryRepository'
 import { FileSystemFileRepository } from '../repositories/FileSystemFileRepository'
 import { TagExtractionService } from '../../domain/services/TagExtractionService'
+import { FileWatcherService } from '../../domain/services/FileWatcherService'
+import { NotificationService } from '../services/NotificationService'
 import { ILogger } from '../../application/ports/ILogger'
 import { IDirectoryRepository } from '../../domain/repositories/IDirectoryRepository'
 import { IFileRepository } from '../../domain/repositories/IFileRepository'
@@ -26,6 +28,8 @@ export class DIContainer {
   private directoryRepository: IDirectoryRepository
   private fileRepository: IFileRepository
   private tagExtractionService: TagExtractionService
+  private fileWatcherService: FileWatcherService
+  private notificationService: NotificationService
 
   private constructor() {
     this.logger = new ConsoleLogger()
@@ -35,6 +39,10 @@ export class DIContainer {
     const basePath = process.env.CLAUDE_OUTPUTS_PATH || '/Users/tehrani/Documents/claude-outputs'
     this.directoryRepository = new FileSystemDirectoryRepository(basePath, this.logger)
     this.fileRepository = new FileSystemFileRepository(basePath, this.tagExtractionService, this.logger)
+    
+    // Initialize notification services
+    this.fileWatcherService = new FileWatcherService(basePath, this.logger)
+    this.notificationService = new NotificationService(this.fileWatcherService, this.logger)
   }
 
   static getInstance(): DIContainer {
@@ -145,5 +153,9 @@ export class DIContainer {
 
   getSecurityMiddleware(): SecurityMiddleware {
     return new SecurityMiddleware(this.getLogger())
+  }
+
+  getNotificationService(): NotificationService {
+    return this.notificationService
   }
 }

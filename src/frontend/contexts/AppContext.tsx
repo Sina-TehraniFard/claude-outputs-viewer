@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react'
+import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
 import { DirectoryInfo, FileInfo, SearchResult, SearchQuery } from '../types/api'
+import { NotificationService, NotificationPayload } from '../services/NotificationService'
 
 export interface AppState {
   // Navigation
@@ -21,6 +22,10 @@ export interface AppState {
   // User preferences
   favorites: string[]
   theme: 'light' | 'dark'
+  
+  // Notifications
+  notifications: NotificationPayload[]
+  notificationService: NotificationService | null
 }
 
 type AppAction =
@@ -36,6 +41,9 @@ type AppAction =
   | { type: 'SET_SEARCH_QUERY'; payload: SearchQuery }
   | { type: 'TOGGLE_FAVORITE'; payload: string }
   | { type: 'SET_THEME'; payload: 'light' | 'dark' }
+  | { type: 'ADD_NOTIFICATION'; payload: NotificationPayload }
+  | { type: 'REMOVE_NOTIFICATION'; payload: string }
+  | { type: 'SET_NOTIFICATION_SERVICE'; payload: NotificationService }
   | { type: 'CLEAR_SEARCH' }
 
 const initialState: AppState = {
@@ -54,7 +62,9 @@ const initialState: AppState = {
     includeContent: false
   },
   favorites: JSON.parse(localStorage.getItem('claude-outputs-favorites') || '[]'),
-  theme: (localStorage.getItem('claude-outputs-theme') as 'light' | 'dark') || 'light'
+  theme: (localStorage.getItem('claude-outputs-theme') as 'light' | 'dark') || 'light',
+  notifications: [],
+  notificationService: null
 }
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -112,6 +122,36 @@ function appReducer(state: AppState, action: AppAction): AppState {
       }
       return { ...state, theme: action.payload }
     
+    case 'ADD_NOTIFICATION': {
+      const newNotificationId = `${action.payload.data.timestamp}_${action.payload.type}`
+      const exists = state.notifications.some(n => 
+        `${n.data.timestamp}_${n.type}` === newNotificationId
+      )
+      
+      if (exists) {
+        return state // Skip duplicate notification
+      }
+      
+      return {
+        ...state,
+        notifications: [...state.notifications, action.payload]
+      }
+    }
+    
+    case 'REMOVE_NOTIFICATION':
+      return {
+        ...state,
+        notifications: state.notifications.filter(n => 
+          `${n.data.timestamp}_${n.type}` !== action.payload
+        )
+      }
+    
+    case 'SET_NOTIFICATION_SERVICE':
+      return {
+        ...state,
+        notificationService: action.payload
+      }
+    
     case 'CLEAR_SEARCH':
       return { 
         ...state, 
@@ -139,9 +179,38 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState)
 
   // Initialize theme on mount
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.theme === 'dark') {
       document.documentElement.classList.add('dark')
+    }
+  }, [])
+
+  // Initialize notification service
+  useEffect(() => {
+    const notificationService = new NotificationService()
+    
+    // Initialize the service
+    notificationService.initialize().then(() => {
+      dispatch({ type: 'SET_NOTIFICATION_SERVICE', payload: notificationService })
+    })
+
+    // Listen for file change notifications
+    const handleFileChangeNotification = (event: CustomEvent<NotificationPayload>) => {
+      dispatch({ type: 'ADD_NOTIFICATION', payload: event.detail })
+      
+      // Auto-remove notification after 10 seconds
+      setTimeout(() => {
+        const notificationId = `${event.detail.data.timestamp}_${event.detail.type}`
+        dispatch({ type: 'REMOVE_NOTIFICATION', payload: notificationId })
+      }, 10000)
+    }
+
+    window.addEventListener('file_change_notification', handleFileChangeNotification as EventListener)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('file_change_notification', handleFileChangeNotification as EventListener)
+      notificationService.disconnect()
     }
   }, [])
 
@@ -177,6 +246,8 @@ export function useAppActions() {
     setSearchQuery: (query: SearchQuery) => dispatch({ type: 'SET_SEARCH_QUERY', payload: query }),
     toggleFavorite: (filePath: string) => dispatch({ type: 'TOGGLE_FAVORITE', payload: filePath }),
     setTheme: (theme: 'light' | 'dark') => dispatch({ type: 'SET_THEME', payload: theme }),
+    addNotification: (notification: NotificationPayload) => dispatch({ type: 'ADD_NOTIFICATION', payload: notification }),
+    removeNotification: (id: string) => dispatch({ type: 'REMOVE_NOTIFICATION', payload: id }),
     clearSearch: () => dispatch({ type: 'CLEAR_SEARCH' })
   }
 }

@@ -1,4 +1,4 @@
-import { Menu, Moon, Sun, Search } from 'lucide-react'
+import { Menu, Moon, Sun, Search, Bell } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { useApp, useAppActions } from '../../contexts/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -71,6 +71,27 @@ export function Header({ onToggleSidebar }: HeaderProps) {
             </TooltipTrigger>
             <TooltipContent>
               <p>クリックまたは ⌘K で検索を開始</p>
+            </TooltipContent>
+          </Tooltip>
+
+          {/* Notification Settings */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button 
+                className="p-2 hover:bg-accent hover:scale-110 rounded-md transition-all duration-200 cursor-pointer relative"
+                onClick={() => navigate('/notifications')}
+                aria-label="通知設定"
+              >
+                <Bell className="w-5 h-5 text-muted-foreground" />
+                {state.notifications.length > 0 && (
+                  <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full text-xs flex items-center justify-center text-white">
+                    {state.notifications.length > 9 ? '9+' : state.notifications.length}
+                  </span>
+                )}
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>通知設定</p>
             </TooltipContent>
           </Tooltip>
 

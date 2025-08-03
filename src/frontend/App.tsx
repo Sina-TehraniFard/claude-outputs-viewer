@@ -8,6 +8,7 @@ import { DirectoryView } from './pages/DirectoryView'
 import { FileView } from './pages/FileView'
 import { SearchPage } from './pages/SearchPage'
 import { FavoritesPage } from './pages/FavoritesPage'
+import { NotificationsPage } from './pages/NotificationsPage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/file/:filePath" element={<FileView />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
             </Routes>
           </Layout>
         </Router>

@@ -14,6 +14,7 @@ function main(): void {
       container.getSearchController(),
       container.getErrorHandler(),
       container.getSecurityMiddleware(),
+      container.getNotificationService(),
       logger
     )
 
